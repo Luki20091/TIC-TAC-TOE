@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>GRA | Kółko i krzyżyk</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="Łukasz Kucharczyk" />
+	<meta name="copyright" content="Copyright TIC-TAC-TOE 2023" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+        html {
+            background-color: #161616;
+	        font-family: 'Comfortaa';
+	        font-weight: 700;
+            color: #fff;
+            text-shadow: 0px 2px 10px rgba(0, 0, 20, 0.4);
+            cursor: context-menu;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+        }
+
+        body {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        td {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            font-size: 24px;
+            border: 2px solid #333;
+            cursor: pointer;
+            box-shadow: 0px 2px 10px rgba(0, 0, 20, 0.4);
+            font-size: 40px;
+        }
+
+        td:hover {
+            border: 2px solid #494949;
+        }
+        .win:hover {
+            border: 2px solid yellow;
+        }
+        .win {
+            background-color: #1b1b1b;
+            border: 2px solid yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gra w kółko i krzyżyk</h1>
+    <table id="grid">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <script>
+        const komorki = document.querySelectorAll("#grid td");
+        let currentPlayer = "X";
+        let gameEnded = false;
+ 
+        function checkwin() {
+            const rows = [...document.querySelectorAll("#grid tr")];
+            const cols = [...document.querySelectorAll("#grid td")];
+
+
+            for (let i = 0; i < 3; i++) {
+                if (cols[i * 3].textContent && cols[i * 3].textContent === cols[i * 3 + 1].textContent && cols[i * 3].textContent === cols[i * 3 + 2].textContent) {
+                    cols[i * 3].classList.add('win');
+                    cols[i * 3 + 1].classList.add('win');
+                    cols[i * 3 + 2].classList.add('win');
+                    gameEnded = true;
+                }
+                if (cols[i].textContent && cols[i].textContent === cols[i + 3].textContent && cols[i].textContent === cols[i + 6].textContent) {
+                    cols[i].classList.add('win');
+                    cols[i + 3].classList.add('win');
+                    cols[i + 6].classList.add('win');
+                    gameEnded = true;
+                }
+            }
+            
+
+
+            if (cols[0].textContent && cols[0].textContent === cols[4].textContent && cols[0].textContent === cols[8].textContent) {
+                cols[0].classList.add('win');
+                cols[4].classList.add('win');
+                cols[8].classList.add('win');
+                gameEnded = true;
+            }
+            if (cols[2].textContent && cols[2].textContent === cols[4].textContent && cols[2].textContent === cols[6].textContent) {
+                cols[2].classList.add('win');
+                cols[4].classList.add('win');
+                cols[6].classList.add('win');
+                gameEnded = true;
+            }
+        }
+ 
+        function play(komorka) {
+            if (!komorka.textContent && !gameEnded) {
+                komorka.textContent = currentPlayer;
+                checkwin();
+                currentPlayer = (currentPlayer === "X") ? "O" : "X";
+            }
+        }
+ 
+        komorki.forEach(komorka => komorka.addEventListener("click", () => play(komorka)));
+
+    </script>
+</body>
+</html>
