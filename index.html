@@ -98,7 +98,7 @@
                     cols[i * 3 + 2].classList.add('win');
                     gameEnded = true;
                 }
-                if (cols[i].textContent && cols[i].textContent === cols[i + 3].textContent && cols[i].textContent === cols[i + 6].textContent) {
+                else if (cols[i].textContent && cols[i].textContent === cols[i + 3].textContent && cols[i].textContent === cols[i + 6].textContent) {
                     cols[i].classList.add('win');
                     cols[i + 3].classList.add('win');
                     cols[i + 6].classList.add('win');
@@ -114,7 +114,7 @@
                 cols[8].classList.add('win');
                 gameEnded = true;
             }
-            if (cols[2].textContent && cols[2].textContent === cols[4].textContent && cols[2].textContent === cols[6].textContent) {
+            else if (cols[2].textContent && cols[2].textContent === cols[4].textContent && cols[2].textContent === cols[6].textContent) {
                 cols[2].classList.add('win');
                 cols[4].classList.add('win');
                 cols[6].classList.add('win');
