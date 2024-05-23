@@ -91,36 +91,39 @@
             const cols = [...document.querySelectorAll("#grid td")];
 
 
-            for (let i = 0; i < 3; i++) {
-                if (cols[i * 3].textContent && cols[i * 3].textContent === cols[i * 3 + 1].textContent && cols[i * 3].textContent === cols[i * 3 + 2].textContent) {
-                    cols[i * 3].classList.add('win');
-                    cols[i * 3 + 1].classList.add('win');
-                    cols[i * 3 + 2].classList.add('win');
-                    gameEnded = true;
-                }
-                else if (cols[i].textContent && cols[i].textContent === cols[i + 3].textContent && cols[i].textContent === cols[i + 6].textContent) {
-                    cols[i].classList.add('win');
-                    cols[i + 3].classList.add('win');
-                    cols[i + 6].classList.add('win');
-                    gameEnded = true;
-                }
-            }
-            
+            if(gameEnded == false) {
+			    for (let i = 0; i < 3; i++) {
+					if (cols[i * 3].textContent && cols[i * 3].textContent === cols[i * 3 + 1].textContent && cols[i * 3].textContent === cols[i * 3 + 2].textContent) {
+					    cols[i * 3].classList.add('win');
+					    cols[i * 3 + 1].classList.add('win');
+					    cols[i * 3 + 2].classList.add('win');
+					    gameEnded = true;
+					}
+					else if (cols[i].textContent && cols[i].textContent === cols[i + 3].textContent && cols[i].textContent === cols[i + 6].textContent) {
+					    cols[i].classList.add('win');
+					    cols[i + 3].classList.add('win');
+					    cols[i + 6].classList.add('win');
+					    gameEnded = true;
+					}
+			    }
+		    }
 
 
-            if (cols[0].textContent && cols[0].textContent === cols[4].textContent && cols[0].textContent === cols[8].textContent) {
-                cols[0].classList.add('win');
-                cols[4].classList.add('win');
-                cols[8].classList.add('win');
-                gameEnded = true;
-            }
-            else if (cols[2].textContent && cols[2].textContent === cols[4].textContent && cols[2].textContent === cols[6].textContent) {
-                cols[2].classList.add('win');
-                cols[4].classList.add('win');
-                cols[6].classList.add('win');
-                gameEnded = true;
-            }
-        }
+            if(gameEnded == false) {
+	            if (cols[0].textContent && cols[0].textContent === cols[4].textContent && cols[0].textContent === cols[8].textContent) {
+	                cols[0].classList.add('win');
+	                cols[4].classList.add('win');
+	                cols[8].classList.add('win');
+	                gameEnded = true;
+	            }
+	            else if (cols[2].textContent && cols[2].textContent === cols[4].textContent && cols[2].textContent === cols[6].textContent) {
+	                cols[2].classList.add('win');
+	                cols[4].classList.add('win');
+	                cols[6].classList.add('win');
+	                gameEnded = true;
+	            }
+	        }
+		}
  
         function play(komorka) {
             if (!komorka.textContent && !gameEnded) {
